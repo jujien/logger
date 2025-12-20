@@ -4,5 +4,19 @@
 import PackageDescription
 
 let package = Package(
-    name: "Logger"
+    name: "Logger",
+    platforms: [
+        .iOS(.v15),
+        .macOS(.v12),
+        .watchOS(.v8),
+        .macCatalyst(.v15),
+        .tvOS(.v14)
+    ],
+    products: [
+        .library(name: "Logger", targets: ["Logger"])
+    ],
+    targets: [
+        .target(name: "Logger"),
+        .testTarget(name: "LoggerTests", dependencies: ["Logger"])
+    ]
 )
