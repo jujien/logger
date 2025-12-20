@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Logger",
+    name: "logger",
     platforms: [
         .iOS(.v15),
         .macOS(.v12),

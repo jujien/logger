@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E4D458402CDCCCCA007F7F71 /* Logger in Frameworks */ = {isa = PBXBuildFile; productRef = E4D4583F2CDCCCCA007F7F71 /* Logger */; };
+		E4D458432CDCCD3F007F7F71 /* Logger in Frameworks */ = {isa = PBXBuildFile; productRef = E4D458422CDCCD3F007F7F71 /* Logger */; };
+		E4D458462CDCCF3A007F7F71 /* Logger in Frameworks */ = {isa = PBXBuildFile; productRef = E4D458452CDCCF3A007F7F71 /* Logger */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		E4D458122CDCCB70007F7F71 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +58,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4D458462CDCCF3A007F7F71 /* Logger in Frameworks */,
+				E4D458432CDCCD3F007F7F71 /* Logger in Frameworks */,
+				E4D458402CDCCCCA007F7F71 /* Logger in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +121,9 @@
 			);
 			name = DemoLogger;
 			packageProductDependencies = (
+				E4D4583F2CDCCCCA007F7F71 /* Logger */,
+				E4D458422CDCCD3F007F7F71 /* Logger */,
+				E4D458452CDCCF3A007F7F71 /* Logger */,
 			);
 			productName = DemoLogger;
 			productReference = E4D458002CDCCB6E007F7F71 /* DemoLogger.app */;
@@ -195,6 +207,9 @@
 			);
 			mainGroup = E4D457F72CDCCB6E007F7F71;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E4D458442CDCCF3A007F7F71 /* XCLocalSwiftPackageReference "../../Logger" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E4D458012CDCCB6E007F7F71 /* Products */;
 			projectDirPath = "";
@@ -591,6 +606,28 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		E4D458442CDCCF3A007F7F71 /* XCLocalSwiftPackageReference "../../Logger" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../Logger;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E4D4583F2CDCCCCA007F7F71 /* Logger */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Logger;
+		};
+		E4D458422CDCCD3F007F7F71 /* Logger */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Logger;
+		};
+		E4D458452CDCCF3A007F7F71 /* Logger */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Logger;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E4D457F82CDCCB6E007F7F71 /* Project object */;
 }

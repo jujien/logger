@@ -33,11 +33,19 @@ public struct LogConfiguration {
         let operationSystemVersion = processInfo.operatingSystemVersion
         self.osVersion = "\(operationSystemVersion.majorVersion).\(operationSystemVersion.minorVersion).\(operationSystemVersion.patchVersion)"
 #if os(macOS)
-        self.currentDevice = "Mac"
+        var size: Int = 0
+        sysctlbyname("hw.model", nil, &size, nil, 0)
+        var machine = [CChar](repeating: 0, count: Int(size))
+        if sysctlbyname("hw.model", &machine, &size, nil, 0) != 0 {
+            self.currentDevice = "Mac"
+        } else {
+            let code: String = String(cString: machine)
+            self.currentDevice = code
+        }
 #elseif os(iOS) || os(tvOS)
-        self.currentDevice = UIDevice.current.model
+        self.currentDevice = UIDevice.current.name
 #elseif os(watchOS)
-        self.currentDevice = WKInterfaceDevice.current().model
+        self.currentDevice = WKInterfaceDevice.current().name
 #else
         self.currentDevice = processInfo.hostName
 #endif

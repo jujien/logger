@@ -8,7 +8,7 @@
 import Foundation
 import os 
 
-public class DebugLogger {
+open class DebugLogger {
     public var tag: String
     private let config: LogConfiguration
     private let logger: os.Logger
@@ -18,27 +18,6 @@ public class DebugLogger {
         self.config = config
         self.logger = os.Logger(subsystem: config.identifier, category: tag)
     }
-    
-    public func info(message: String, args: [any CVarArg] = []) {
-        self.log(priority: Int(LogLevel.info.rawValue), message: message, args: args, error: nil)
-    }
-    
-    public func debug(message: String, args: [any CVarArg] = []) {
-        self.log(priority: Int(LogLevel.debug.rawValue), message: message, args: args, error: nil)
-    }
-    
-    public func warning(message: String, args: [any CVarArg] = [], error: Error? = nil) {
-        self.log(priority: Int(LogLevel.warning.rawValue), message: message, args: args, error: error)
-    }
-    
-    public func error(message: String? = nil, args: [any CVarArg] = [], error: Error) {
-        self.log(priority: Int(LogLevel.error.rawValue), message: message, args: args, error: error)
-    }
-    
-    public func trace(message: String? = nil, args: [any CVarArg] = [], error: Error) {
-        self.log(priority: Int(LogLevel.trace.rawValue), message: message, args: args, error: error)
-    }
-    
 }
 
 extension DebugLogger: Logger {
@@ -57,6 +36,9 @@ extension DebugLogger: Logger {
         case .warning: "⚠️"
         case .error: "‼️"
         case .trace: "🔎"
+        case .fault: "💣"
+        case .critical: "💥"
+        case .notice: "🔔"
         default: ""
         }
         if let message = message {
@@ -66,7 +48,7 @@ extension DebugLogger: Logger {
                 "\(category) \(symbol) \(self.formatMessage(message: message, args: args))"
             }
             if let error {
-                log += ": \(error.localizedDescription)"
+                log += " - \(error.localizedDescription)"
             }
             switch level {
             case .debug: self.logger.debug("\(log)")
@@ -74,6 +56,9 @@ extension DebugLogger: Logger {
             case .warning: self.logger.warning("\(log)")
             case .error: self.logger.error("\(log)")
             case .trace: self.logger.trace("\(log)")
+            case .fault: self.logger.fault("\(log)")
+            case .notice: self.logger.notice("\(log)")
+            case .critical: self.logger.critical("\(log)")
             default: self.logger.debug("\(log)")
             }
         } else if let error {

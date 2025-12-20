@@ -22,8 +22,15 @@ public struct LogLevel: Equatable, RawRepresentable, Sendable {
     public static let warning = LogLevel(rawValue: 1 << 2)!
     public static let error = LogLevel(rawValue: 1 << 3)!
     public static let trace = LogLevel(rawValue: 1 << 4)!
+    public static let fault = LogLevel(rawValue: 1 << 5)!
+    public static let notice = LogLevel(rawValue: 1 << 6)!
+    public static let critical = LogLevel(rawValue: 1 << 7)!
     
-    static let supported: [LogLevel] = [.debug, .info, .warning, .error, .trace]
+#if DEBUG
+    static let supported: [LogLevel] = [.debug, .info, .warning, .error, .trace, .fault, .notice, .critical]
+#else
+    static let supported: [LogLevel] = [.info, .warning, .error, .trace, .fault, .notice, .critical]
+#endif
 }
 
 public protocol Logger {

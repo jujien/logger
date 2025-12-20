@@ -7,7 +7,7 @@
 import Foundation
 
 extension Date {
-    func formatter(pattern: String = "yyyyMMdd HH:mm:ss") -> String {
+    internal func formatter(pattern: String = "yyyy-MM-dd HH:mm:ss") -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = pattern
         return dateFormatter.string(from: self)
