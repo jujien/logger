@@ -14,7 +14,7 @@ open class RecordLogger {
     
     private var logFileURL: URL? {
         if let url {
-            return url.appendingPathComponent("logs/\(Date.now.formatter(pattern: "yyyyMMdd")).log")
+            return url.appendingPathComponent("\(Date.now.formatter(pattern: "yyyyMMdd")).log")
         } else {
             if let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                 return url.appendingPathComponent("logs/\(Date.now.formatter(pattern: "yyyyMMdd")).log")

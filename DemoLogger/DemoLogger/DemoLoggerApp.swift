@@ -15,7 +15,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     ) -> Bool {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         Log.`init`(
-            identifier: Bundle.main.bundleIdentifier ?? "", appVersion: appVersion ?? "", supportRecord: true, logFileURL: nil
+            identifier: Bundle.main.bundleIdentifier ?? "", appVersion: appVersion ?? "", supportRecord: true, logFileURL: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("logs")
         )
 
         return true
