@@ -14,7 +14,7 @@ open class RecordLogger {
     
     private var logFileURL: URL? {
         if let url {
-            return url
+            return url.appendingPathComponent("logs/\(Date.now.formatter(pattern: "yyyyMMdd")).log")
         } else {
             if let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
                 return url.appendingPathComponent("logs/\(Date.now.formatter(pattern: "yyyyMMdd")).log")
@@ -37,7 +37,7 @@ open class RecordLogger {
     }
     
     private func createFolderIfNeeded() {
-        if let logFolderURL, self.url == nil {
+        if let logFolderURL {
             if !FileManager.default.fileExists(atPath: logFolderURL.path) {
                 do {
                     try FileManager.default.createDirectory(at: logFolderURL, withIntermediateDirectories: true, attributes: nil)
